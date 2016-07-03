@@ -41,12 +41,11 @@
       loadingIndicator = document.createElement('li')
       loadingIndicator.innerText = 'Requesting ' + urls[i]
       loadingElements[urls[i]] = loadingIndicator
-      iframe.onload = (function() {
+      var handleLoad = (function() {
         var url = urls[i]
         return function() {
           // Remove loading indicator
-          console.log('loaded ', url)
-          loadingElements[url].remove()
+          loadingContainer.removeChild(loadingElements[url])
           delete loadingElements[url]
           if (!Object.keys(loadingElements).length) {
             requestsComplete.className = ''
@@ -55,6 +54,11 @@
           }
         }
       })()
+      if (iframe.attachEvent) {
+        iframe.attachEvent('onload', handleLoad)
+      } else {
+        iframe.onload = handleLoad
+      }
 
       if (iframeWidth) {
         iframe.width = iframeWidth 
@@ -74,7 +78,7 @@
 
   window.resetFrames = function() {
     while(framesContainer.lastChild) {
-      framesContainer.lastChild.remove()
+      framesContainer.removeChild(framesContainer.lastChild)
     }
   }
 
