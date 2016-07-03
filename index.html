@@ -5,18 +5,32 @@
   <title>X-Frame-Options Testing</title>
   <style>
     label {display: block}
+    p {max-width: 500px}
   </style>
 </head>
 <body>
   <h1>X-Frame-Options Testing</h1>
   <div>
     <label for="urls">
-      <p>Enter each URL on a line in the text area below. They'll each be embedded
-      in an iframe.</p>
-    <textarea id="urls" name="urls" cols="80" rows="10">
+      <p>
+        Enter each URL on a line in the text area below. They'll each be
+        embedded in an iframe.
+      </p>
+      <p>
+        If a site has implemented X-Frame-Options, the iframe will remain blank
+        (no page loaded). A page may use frame busting to change the URL of the
+        outer test page. We're catching this with an alert dialog.
+      </p>
+      <p>
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/HTTP/X-Frame-Options"
+          target="_blank">MDN X-Frame-Options Reference</a>. <a
+          href="https://tools.ietf.org/html/rfc7034" target="_blank">RFC 7034
+          Reference</a>.
+      </p>
+      <textarea id="urls" name="urls" cols="80" rows="10">
 https://www.google.com
-https://www.paypal.com
-    </textarea>
+https://www.paypal.com</textarea>
     </label>
     <label>Optional iframe width
       <input id="width" type="text" value="500">
@@ -27,7 +41,7 @@ https://www.paypal.com
     <br/>
   </div>
   <button id="create-frames" onclick="createFrames()">Create frames</button>
-  <button id="reset" onclick="resetFrames()">Reset</button>
+  <button id="reset" onclick="resetFrames()">Reset and clear frames</button>
   <div id="frames"></div>
   <script async src="main.js"></script>
 </body>

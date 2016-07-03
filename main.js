@@ -29,19 +29,6 @@
       if (iframeHeight) {
         iframe.height = iframeHeight 
       }
-      iframe.onload = (function() {
-        var url = urls[i]
-        return function() {
-          handleLoad(url)
-        }
-      })()
-
-      iframe.onerror = (function() {
-        var url = urls[i]
-        return function() {
-          handleError(url)
-        }
-      })()
 
       iframeContainer.appendChild(iframeLabel)
       iframeContainer.appendChild(iframe)
@@ -58,17 +45,6 @@
   }
 
   window.onbeforeunload = function() {
-    //return 'A frame has attempted to change the location of the page. Allow?'
-  }
-
-  function handleLoad(url) {
-    reportResult(true, url)
-  }
-  function handleError(url) {
-    reportResult(false, url)
-  }
-
-  function reportResult(success, url) {
-    console.log(success, url)
+    return 'A frame has attempted to change the location of the page. Allow?'
   }
 })()
