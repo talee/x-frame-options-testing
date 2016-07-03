@@ -6,6 +6,7 @@
   <style>
     label {display: block}
     p {max-width: 500px}
+    .hide {display: none}
   </style>
 </head>
 <body>
@@ -22,6 +23,14 @@
         outer test page. We're catching this with an alert dialog.
       </p>
       <p>
+        Blocked frames should show errors if a developer console is open. Errors
+        should look something along the lines of:
+        <br/><br/>
+        <code>
+Refused to display 'https://www.google.com/' in a frame because it set 'X-Frame-Options' to 'SAMEORIGIN'.
+        </code>
+      </p>
+      <p>
         <a
           href="https://developer.mozilla.org/en-US/docs/Web/HTTP/X-Frame-Options"
           target="_blank">MDN X-Frame-Options Reference</a>. <a
@@ -30,6 +39,7 @@
       </p>
       <textarea id="urls" name="urls" cols="80" rows="10">
 https://www.google.com
+https://www.apple.com
 https://www.paypal.com</textarea>
     </label>
     <label>Optional iframe width
@@ -42,6 +52,9 @@ https://www.paypal.com</textarea>
   </div>
   <button id="create-frames" onclick="createFrames()">Create frames</button>
   <button id="reset" onclick="resetFrames()">Reset and clear frames</button>
+  <ol id="loading-container"></ol>
+  <p id="requests-complete" class="hide">All URLs have been requested. Started
+    at</p>
   <div id="frames"></div>
   <script async src="main.js"></script>
 </body>
