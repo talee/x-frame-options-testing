@@ -16,6 +16,7 @@
   window.createFrames = function() {
     var startTime = new Date()
     resetFrames()
+    requestsComplete.innerText = 'Start time is ' + startTime.toLocaleTimeString()
     var urls = document.getElementById('urls').value.replace(/[ \t]/g, '').split('\n')
     if (urls.length == 1 && !urls[0].length) {
       return
@@ -49,7 +50,7 @@
           delete loadingElements[url]
           if (!Object.keys(loadingElements).length) {
             requestsComplete.className = ''
-            requestsComplete.innerText += ' ' + startTime.toLocaleTimeString() +
+            requestsComplete.innerText = 'All URLs have been requested. Started at ' + startTime.toLocaleTimeString() +
               '. Took ' + (new Date() - startTime)/1000 + 's'
           }
         }
@@ -78,6 +79,6 @@
   }
 
   window.onbeforeunload = function() {
-    //return 'A frame has attempted to change the location of the page. Allow?'
+    return 'A frame has attempted to change the location of the page. Allow?'
   }
 })()

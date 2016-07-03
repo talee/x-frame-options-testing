@@ -6,7 +6,6 @@
   <style>
     label {display: block}
     p {max-width: 500px}
-    .hide {display: none}
   </style>
 </head>
 <body>
@@ -52,9 +51,8 @@ https://www.paypal.com</textarea>
   </div>
   <button id="create-frames" onclick="createFrames()">Create frames</button>
   <button id="reset" onclick="resetFrames()">Reset and clear frames</button>
+  <p id="requests-complete"></p>
   <ol id="loading-container"></ol>
-  <p id="requests-complete" class="hide">All URLs have been requested. Started
-    at</p>
   <div id="frames"></div>
   <script async src="main.js"></script>
 </body>
